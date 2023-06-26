@@ -17,7 +17,8 @@ const AircraftTemplate = {
             status_surveillance:    status_surveillance,
             mission_capable:        mission_capable,
             minutes:                minutes,
-            order: 0
+            order: 0,
+            line_code: `${line}${ac_state}${status_surveillance}${mission_capable}`.replace(/ /g,'_')
         }
         return report;
     },
@@ -28,7 +29,7 @@ const AircraftTemplate = {
         let data            = []
         while(current < dailyFrequency){
             let key             = current.toString().padStart(2,"0") + "00"
-            let hourlyReport    = AircraftTemplate.airCraftReportHourly(1,2,4,6,7)
+            let hourlyReport    = AircraftTemplate.airCraftReportHourly("1ST LINE LOAN","S","S","PMC",60)
             data.push({
                 order: current+1,
                 time: key,
