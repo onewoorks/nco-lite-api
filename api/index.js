@@ -19,13 +19,14 @@ mongoose.connect(mongoDb.db, {
   }
 )
  
-
-const refTeams = require('./routes/refteams.routes')
-const aircraft = require('./routes/aircraft.routes')
+const inventoryRoute        = require('./routes/inventory.routes')
+const refTeams              = require('./routes/refteams.routes')
+const aircraft              = require('./routes/aircraft.routes')
 const dailyReportSubmission = require('./routes/dailyReportSubmission.routes')
 const reportSubmissionRoute = require('./routes/reportSubmission.routes')
-const refRoutes = require('./routes/references.routes')
-const autoCreateRoute = require('./routes/autocreate.routes')
+const refRoutes             = require('./routes/references.routes')
+const autoCreateRoute       = require('./routes/autocreate.routes')
+const authRoute             = require('./routes/auth.routes')
 
 const app = express();
 app.use(bodyParser.json());
@@ -35,17 +36,17 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
  
 // Static directory path
-app.use(express.static(path.join(__dirname, 'dist/angular-mean-crud-tutorial')));
- 
- 
+app.use(express.static(path.join(__dirname, 'dist/nco')));
+
 // API root
-// app.use('/api', bookRoute)
+app.use('/api/inventory', inventoryRoute)
 app.use('/api/ref-teams', refTeams);
 app.use('/api/aircraft', aircraft)
 app.use('/api/daily-report-submission', dailyReportSubmission)
 app.use('/api/report/submission', reportSubmissionRoute)
 app.use('/api/refs', refRoutes)
 app.use('/api/autocreate', autoCreateRoute)
+app.use('/api/auth', authRoute)
 
 // PORT
 const port = process.env.PORT || 8000;
