@@ -1,26 +1,41 @@
 const express = require('express')
 const app = express()
 const ReportSubmissionController = require('../controllers/reportSubmission/reportSubmission.controller')
+const AutoCreateController = require('../controllers/autoCreate/autoCreate.controller')
+const dfns = require('date-fns')
 
 const reportSubmissionRoute = express.Router()
 let ReportSubmission = require('../models/ReportSubmission')
 
 reportSubmissionRoute
-    .route('/draft/inventory/:id')
-    .get(async (req, res, next) => {
-        // let output = await ReportSubmission.find({})
-        //     .where('inventory_id')
-        //     .equals(req.params.id)
-        // res.send(output)
-        const query = {
-            inventory_id: req.params.id,
+    .route('/draft/inventory')
+    .post(async (req, res, next) => {
+        var d = new Date();
+        m = d.getMonth(); //current month
+        y = d.getFullYear(); //current year
+        let firstDay    = dfns.format(new Date(y, m, 1), 'yyyy-MM-dd')
+        let lastDay     = dfns.format(new Date(y, m+1, 0), 'yyyy-MM-dd')
+        const query     = {
+            inventory_id: req.body.id,
             "$and": [
-                {"report_date":{"$gte" :  '2023-06-01'}},
-                {"report_date":{"$lte" :  '2023-06-31' }}
+                { report_date:{"$gte" :  firstDay}},
+                { report_date:{"$lte" :  lastDay }}
             ]
         }
-        const result = await ReportSubmission.find(query)
-        res.send(result)
+
+        try {
+            const result = await ReportSubmission.find(query).sort({sort_no:1});
+            const count = await ReportSubmission.countDocuments(query);
+            if(count > 0){
+                res.send(result);
+            } else {
+                const draftReport = await createDraftReportMonthly(req.body.id, req.body.inventoryType )
+                res.send(draftReport)
+            }
+            
+          } catch (err) {
+            next(err);
+          }
     })
 
 reportSubmissionRoute.route('/draft/:id').get(async (req, res, next) => {
@@ -67,7 +82,15 @@ reportSubmissionRoute.route('/add').post(async (req, res, next) => {
 reportSubmissionRoute.route('/update').put(async (req, res, next) => {
     let data = req.body
     await ReportSubmission.findByIdAndUpdate(data._id, req.body)
-    res.send(data.inventory_id)
+    res.send(data.inventory_id) 
 })
+
+async function createDraftReportMonthly(inventoryId, inventoryType){
+    let d       = new Date()
+    let year    = d.getFullYear()
+    let month   = d.getMonth()+1
+    let output  = await AutoCreateController.monthlyInventoryDraftByInventoryId(inventoryId, inventoryType, year, month)
+    return output
+}
 
 module.exports = reportSubmissionRoute

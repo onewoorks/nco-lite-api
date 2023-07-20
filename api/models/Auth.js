@@ -1,3 +1,51 @@
+var convert = require('xml-js');
+const { transform } = require('camaro')
+
+const profileTemplate = ['UserResponseForm', {
+    id: 'title-case(id)',
+    name: 'title-case(name)',
+    ucommsPassword: 'title-case(ucommsPassword)',
+    modeId: 'title-case(modeId)',
+    modeDesc: 'title-case(modeDesc)',
+    colorType: 'title-case(colorType)',
+    userType: 'title-case(userType)',
+    password: 'title-case(password)',
+    commandHqId: 'title-case(commandHqId)',
+    commandHqDesc: 'title-case(commandHqDesc)',
+    commandHqAcronym:'title-case(commandHqAcronym)',
+    unitCommandHqId: 'title-case(commandHqAcronym)',
+    unitCommandHqDesc: 'title-case(unitCommandHqDesc)',
+    unitCommandHqAcronym: 'title-case(unitCommandHqAcronym)',
+    navyAssetId: 'title-case(navyAssetId)',
+    navyAssetShipName: 'title-case(navyAssetShip)',
+    createdDate: 'title-case(createdDate)',
+    createdBy: 'title-case(createdBy)',
+    modifiedDate: 'title-case(modifiedDate)',
+    modifiedBy: 'title-case(modifiedBy)',
+    email: 'title-case(email)',
+    phoneNo: 'title-case(phoneNo)',
+    departmentId: 'title-case()',
+    departmentDesc: 'title-case(departmentDesc)',
+    firstName: 'title-case(firstName)',
+    lastName: 'title-case(lastName)',
+    extensionNo: 'title-case(extensionNo)',
+    staffNo: 'title-case(staffNo)',
+    serviceTypeId: 'title-case(serviceTypeId)',
+    serviceTypeDesc: 'title-case(serviceTypeDesc)',
+    rank: 'title-case(rank)',
+    currentUnit: 'title-case(currentUnit)',
+    userStatus: 'title-case(userStatus)',
+    pariorityContact: 'title-case(pariorityContact)',
+    streetAddress: 'title-case(streetAddress)',
+    postalCode: 'title-case(postalCode)',
+    l: 'title-case(l)',
+    state: 'title-case(state)',
+    company: 'title-case(company)',
+    adFlag: 'title-case(adFlag)',
+    photo: 'title-case(photo)',
+    isReset: 'title-case(isReset)',
+}]
+
 const penyedia = {
     colorType: 'WHITE',
     commandHqAcronym: 'PU Labuan',
@@ -43,6 +91,14 @@ const pengesah = {
     username: 'pu.labuan.rmaf',
 }
 
+const predefinedRoles = {
+    "373688": "Pengesah",
+    "404082": "Penyedia",
+    "373831": "Penyedia",
+    "375440": "Penyedia",
+    "721635": "Penyedia"
+}
+
 const Auth = (() => {
     return {
         checkUser: (username, password) => {
@@ -54,6 +110,18 @@ const Auth = (() => {
             }
             return user
         },
+        getUserRole: (userid) => {
+            return predefinedRoles[userid]
+        },
+        checkUserId: async (userId) => {
+            try {
+                var xml = require('fs').readFileSync(`./models/dummyuser/${userId}.xml`, 'utf8');
+                const result = await transform(xml, profileTemplate)
+                return result[0];
+            } catch (e){
+                return false
+            } 
+        }
     }
 })()
 

@@ -1,0 +1,45 @@
+<UserResponseForm>
+<id>bc3d42c2-1c70-43e1-8502-5472a9c31534</id>
+<username>375440</username>
+<name>MOHD IRSHAD BIN ISMAIL</name>
+<ucommsPassword/>
+<modeId/>
+<modeDesc/>
+<colorType/>
+<userType>PSN</userType>
+<password/>
+<commandHqId/>
+<commandHqDesc/>
+<commandHqAcronym/>
+<unitCommandHqId> </unitCommandHqId>
+<unitCommandHqDesc/>
+<unitCommandHqAcronym/>
+<navyAssetId/>
+<navyAssetShipName/>
+<createdDate/>
+<createdBy/>
+<modifiedDate/>
+<modifiedBy/>
+<email>375440@mafc2.mil.my</email>
+<phoneNo>0182754538</phoneNo>
+<departmentId/>
+<departmentDesc/>
+<firstName>MOHD IRSHAD</firstName>
+<lastName>ISMAIL</lastName>
+<extensionNo/>
+<staffNo>375440</staffNo>
+<serviceTypeId>02</serviceTypeId>
+<serviceTypeDesc>AIRFORCE</serviceTypeDesc>
+<rank>Kapten TUDM</rank>
+<currentUnit>NO 12 SKN TUDM</currentUnit>
+<userStatus>ACTIVE</userStatus>
+<pariorityContact/>
+<streetAddress>NO 47 KM 4, JLN PUTRA, </streetAddress>
+<postalCode>06250</postalCode>
+<l/>
+<state>3</state>
+<company/>
+<adFlag>true</adFlag>
+<photo/>
+<isReset>true</isReset>
+</UserResponseForm>

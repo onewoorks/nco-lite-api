@@ -13,8 +13,14 @@ auth.route('/login').post(async (req, res, next) => {
 })
 
 auth.route('/role').post(async (req, res, next) => {
-    let data = req.body
-    const output = Auth.checkUser(data.userrole)
+    let data        = req.body
+    const output    = Auth.getUserRole(data.userid)
+    res.json(output)
+})
+
+auth.route('/user/:id').get(async (req, res, next) => {
+    let uid = req.params.id
+    const output = await Auth.checkUserId(uid)
     res.json(output)
 })
 

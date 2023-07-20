@@ -7,6 +7,7 @@ let ReportSubmission = new Schema({
     timestamp: String,
     status: String,
     report_date: String,
+    sort_no: Number,
     data: Object
 }, {
     collection: 'ReportSubmission'

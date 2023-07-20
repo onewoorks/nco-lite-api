@@ -1,13 +1,15 @@
-const express = require('express');
-const app = express();
+const express       = require('express');
+const app           = express();
+const StringCleaner = require('../helpers/stringcleaner')
+
 
 const airCraftRoute = express.Router();
 const AirCraft = require('../models/AirCraft');
 
-airCraftRoute.route('/filtered').get( async (req, res, next) => {
+airCraftRoute.route('/filtered').post( async (req, res, next) => {
   let data = {
     pengkalan: 'PU LABUAN',
-    squadron: '6 Skn'
+    squadron: StringCleaner.cleanSquadron(req.body.squadron)
   }
   let output = await AirCraft.getAircraftRoleBased(data)
   res.json(output)
@@ -33,7 +35,7 @@ airCraftRoute.route('/types/list').post(async (req, res, next) => {
 })
 
 airCraftRoute.route('/id/:id').get(async (req, res, next) => {
-  let output = await AirCraft.findOne({}).where('_id').equals(req.params.id)
+  let output = await AirCraft.getAircraftReport(req.params.id)
   res.json(output)
 })
  

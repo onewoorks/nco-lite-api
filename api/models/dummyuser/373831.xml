@@ -1,0 +1,45 @@
+<UserResponseForm>
+<id>3068f045-164f-4a39-aefc-617f53990300</id>
+<username>373831</username>
+<name>MOHD HADRI BIN MOHD ISA</name>
+<ucommsPassword/>
+<modeId/>
+<modeDesc/>
+<colorType/>
+<userType>PSN</userType>
+<password/>
+<commandHqId/>
+<commandHqDesc/>
+<commandHqAcronym/>
+<unitCommandHqId> </unitCommandHqId>
+<unitCommandHqDesc/>
+<unitCommandHqAcronym/>
+<navyAssetId/>
+<navyAssetShipName/>
+<createdDate/>
+<createdBy/>
+<modifiedDate/>
+<modifiedBy/>
+<email>373831@mafc2.mil.my</email>
+<phoneNo>0123733183</phoneNo>
+<departmentId/>
+<departmentDesc/>
+<firstName>MOHD HADRI</firstName>
+<lastName>MOHD ISA</lastName>
+<extensionNo/>
+<staffNo>373831</staffNo>
+<serviceTypeId>02</serviceTypeId>
+<serviceTypeDesc>AIRFORCE</serviceTypeDesc>
+<rank>Mejar TUDM</rank>
+<currentUnit>NO 12 SKN TUDM</currentUnit>
+<userStatus>ACTIVE</userStatus>
+<pariorityContact/>
+<streetAddress>TAMAN PANCHOK JAYA, , </streetAddress>
+<postalCode>70400</postalCode>
+<l/>
+<state>11</state>
+<company/>
+<adFlag>true</adFlag>
+<photo/>
+<isReset>true</isReset>
+</UserResponseForm>

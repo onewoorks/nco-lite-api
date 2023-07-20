@@ -19,8 +19,20 @@ function getAircraftTypeListRoleBased(payload){
     return output
 }
 
+function getAircraftReport(aircraftId){
+    let output = AirCraft.findOne({}).where('_id').equals(aircraftId)
+    return output
+}
+
+function getAllAircraft(){
+    let output = AirCraft.find()
+    return output
+}
+
 module.exports = {
     AirCraft,
     getAircraftRoleBased,
-    getAircraftTypeListRoleBased
+    getAircraftTypeListRoleBased,
+    getAircraftReport,
+    getAllAircraft
 }
